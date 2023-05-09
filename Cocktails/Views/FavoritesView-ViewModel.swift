@@ -35,10 +35,17 @@ import Foundation
         if self.cocktails.contains(cocktail) {
             print("Cocktail is already in favorites!")
         } else {
-            objectWillChange.send()
+            //objectWillChange.send()
             cocktails.append(cocktail)
             saveCocktails()
         }
+    }
+    
+    func removeCocktailFromFavorites(cocktail: Cocktail) {
+        cocktails.removeAll { element in
+            cocktail == element
+        }
+        saveCocktails()
     }
     
     func saveCocktails() {
@@ -54,10 +61,17 @@ import Foundation
         if self.ingredients.contains(ingredient) {
             print("Ingredient is already in favorites!")
         } else {
-            objectWillChange.send()
+            //objectWillChange.send()
             ingredients.append(ingredient)
             saveIngredients()
         }
+    }
+    
+    func removeIngredientFromFavorites(ingredient: Ingredient) {
+        ingredients.removeAll { element in
+            ingredient == element
+        }
+        saveIngredients()
     }
     
     func saveIngredients() {

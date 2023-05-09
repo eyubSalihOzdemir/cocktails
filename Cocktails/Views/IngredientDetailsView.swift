@@ -21,18 +21,22 @@ struct IngredientDetailsView: View {
     var body: some View {
         VStack {
             Text(ingredient.strDescription ?? "No description")
-            
-            Button {
-                favoritesViewModel.addIngredientToFavorite(ingredient: ingredient)
-            } label: {
-                Text("Favorite")
-            }
-            .padding()
-            .foregroundColor(.white)
-            .background(.orange)
-            .clipShape(Capsule())
         }
+        .padding()
         .navigationTitle(ingredient.strIngredient)
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    if favoritesViewModel.ingredients.contains(ingredient) {
+                        favoritesViewModel.removeIngredientFromFavorites(ingredient: ingredient)
+                    } else {
+                        favoritesViewModel.addIngredientToFavorite(ingredient: ingredient)
+                    }
+                } label: {
+                    Image(systemName: favoritesViewModel.ingredients.contains(ingredient) ? "heart.fill" : "heart")
+                }
+            }
+        }
     }
 }
 

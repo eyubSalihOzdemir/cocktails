@@ -14,12 +14,12 @@ struct FavoritesView: View {
         NavigationView {
             List {
                 Section("Cocktails") {
-                    CocktailListView(cocktailList: $viewModel.cocktails)
+                    CocktailListView(cocktailList: $viewModel.cocktails, showFavoriteIndicator: false)
                 }
                 .textCase(nil)
                 
                 Section("Ingredients") {
-                    IngredientListView(ingredientList: $viewModel.ingredients)
+                    IngredientListView(ingredientList: $viewModel.ingredients, showFavoriteIndicator: false)
                 }
                 .textCase(nil)
             }

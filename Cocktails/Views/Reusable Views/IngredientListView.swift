@@ -9,6 +9,8 @@ import SwiftUI
 
 struct IngredientListView: View {
     @Binding var ingredientList: [Ingredient]
+    @EnvironmentObject var favoritesViewModel: FavoritesViewModel
+    var showFavoriteIndicator: Bool = true
     
     var body: some View {
         if !ingredientList.isEmpty {
@@ -16,7 +18,15 @@ struct IngredientListView: View {
                 NavigationLink {
                     IngredientDetailsView(ingredient: ingredient)
                 } label: {
-                    Text(ingredient.strIngredient)
+                    HStack {
+                        Text(ingredient.strIngredient)
+                        
+                        if showFavoriteIndicator && favoritesViewModel.ingredients.contains(ingredient) {
+                            Spacer()
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
+                        }
+                    }
                 }
             }
         } else {

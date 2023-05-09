@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CocktailListView: View {
     @Binding var cocktailList: [Cocktail]
+    @EnvironmentObject var favoritesViewModel: FavoritesViewModel
+    var showFavoriteIndicator: Bool = true
     
     var body: some View {
         if !cocktailList.isEmpty {
@@ -35,6 +37,13 @@ struct CocktailListView: View {
                             Text(cocktail.strDrink)
                             Text(cocktail.strCategory)
                                 .foregroundColor(.secondary)
+                        }
+                        
+                        
+                        if showFavoriteIndicator && favoritesViewModel.cocktails.contains(cocktail) {
+                            Spacer()
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
                         }
                     }
                 }

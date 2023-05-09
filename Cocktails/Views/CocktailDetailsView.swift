@@ -32,18 +32,22 @@ struct CocktailDetailsView: View {
                     ProgressView()
                 }
             }
-            
-            Button {
-                favoritesViewModel.addCocktailToFavorites(cocktail: cocktail)
-            } label: {
-                Text("Favorite")
-            }
-            .padding()
-            .foregroundColor(.white)
-            .background(.orange)
-            .clipShape(Capsule())
         }
+        .padding()
         .navigationTitle(cocktail.strDrink)
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    if favoritesViewModel.cocktails.contains(cocktail) {
+                        favoritesViewModel.removeCocktailFromFavorites(cocktail: cocktail)
+                    } else {
+                        favoritesViewModel.addCocktailToFavorites(cocktail: cocktail)
+                    }
+                } label: {
+                    Image(systemName: favoritesViewModel.cocktails.contains(cocktail) ? "heart.fill" : "heart")
+                }
+            }
+        }
     }
 }
 
