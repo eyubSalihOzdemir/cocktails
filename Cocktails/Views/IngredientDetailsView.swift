@@ -19,23 +19,25 @@ struct IngredientDetailsView: View {
     }
     
     var body: some View {
-        VStack {
-            CacheAsyncImage(url: URL(string: "https://www.thecocktaildb.com/images/ingredients/\(ingredient.strIngredient.lowercased()).png")!) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                } else if phase.error != nil {
-                    EmptyView()
-                } else {
-                    ProgressView()
+        ScrollView {
+            VStack {
+                CacheAsyncImage(url: URL(string: "https://www.thecocktaildb.com/images/ingredients/\(ingredient.strIngredient.lowercased()).png")!) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                    } else if phase.error != nil {
+                        EmptyView()
+                    } else {
+                        ProgressView()
+                    }
                 }
+                
+                Text(ingredient.strDescription ?? "No description")
             }
-            
-            Text(ingredient.strDescription ?? "No description")
         }
-        .padding()
+        .padding(.horizontal)
         .navigationTitle(ingredient.strIngredient)
         .toolbar {
             ToolbarItem {

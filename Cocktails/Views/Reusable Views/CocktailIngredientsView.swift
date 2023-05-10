@@ -10,15 +10,22 @@ import SwiftUI
 struct CocktailIngredientsView: View {
     let cocktail: Cocktail
     
+    let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+    
     var body: some View {
-        Group {
+        LazyVGrid(columns: columns, spacing: 20) {
             ForEach(cocktail.cocktailIngredients, id: \.self) { cocktailIngredient in
                 VStack {
                     Text(cocktailIngredient.ingredient)
                         .font(.headline)
-                    
+                        .lineLimit(1)
+
                     Text(cocktailIngredient.mesaure)
                         .foregroundColor(.secondary)
+                        .lineLimit(1)
                 }
             }
         }

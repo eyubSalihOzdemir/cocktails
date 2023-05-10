@@ -19,28 +19,31 @@ struct CocktailDetailsView: View {
     }
         
     var body: some View {
-        VStack {
-            CacheAsyncImage(url: URL(string: cocktail.strDrinkThumb)!) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                } else if phase.error != nil {
-                    EmptyView()
-                } else {
-                    ProgressView()
+        ScrollView {
+            VStack {
+                CacheAsyncImage(url: URL(string: cocktail.strDrinkThumb)!) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                    } else if phase.error != nil {
+                        EmptyView()
+                    } else {
+                        ProgressView()
+                    }
                 }
+                
+                HStack {
+                    CocktailIngredientsView(cocktail: cocktail)
+                }
+                .padding()
+                
+                Text(cocktail.strInstructions)
             }
-            
-            HStack {
-                CocktailIngredientsView(cocktail: cocktail)
-            }
-            .padding()
-            
-            Text(cocktail.strInstructions)
         }
-        .padding()
+        .scrollIndicators(.hidden)
+        .padding(.horizontal)
         .navigationTitle(cocktail.strDrink)
         .toolbar {
             ToolbarItem {
