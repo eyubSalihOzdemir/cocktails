@@ -37,12 +37,12 @@ struct CacheAsyncImage<Content>: View where Content: View {
                 scale: scale,
                 transaction: transaction
             ) { phase in
-                cacheAndRenger(phase: phase)
+                cacheAndRender(phase: phase)
             }
         }
     }
     
-    func cacheAndRenger(phase: AsyncImagePhase) -> some View {
+    func cacheAndRender(phase: AsyncImagePhase) -> some View {
         if case .success(let image) = phase {
             ImageCache[url] = image
         }

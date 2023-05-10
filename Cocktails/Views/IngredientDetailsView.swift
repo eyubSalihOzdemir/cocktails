@@ -34,7 +34,36 @@ struct IngredientDetailsView: View {
                     }
                 }
                 
-                Text(ingredient.strDescription ?? "No description")
+                HStack {
+                    Text("Alcoholic:")
+                        .font(.headline)
+                    Text(ingredient.strAlcohol)
+                    
+                    if let abv = ingredient.strABV {
+                        Text("ABV:")
+                            .font(.headline)
+                        Text("\(abv)%")
+                    }
+                }
+                
+                if let description = ingredient.strDescription {
+                    VStack(alignment: .leading) {
+                        Text("Description")
+                            .font(.headline)
+                            .padding(.vertical, 5)
+                        Text(description)
+                    }
+                }
+                
+                if let type = ingredient.strType {
+                    HStack {
+                        Text("Type:")
+                            .font(.headline)
+                        Text(type)
+                        Spacer()
+                    }
+                    .padding(.vertical, 5)
+                }
             }
         }
         .padding(.horizontal)
@@ -58,5 +87,6 @@ struct IngredientDetailsView: View {
 struct IngredientDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         IngredientDetailsView(ingredient: Ingredient.example)
+            .environmentObject(FavoritesViewModel())
     }
 }

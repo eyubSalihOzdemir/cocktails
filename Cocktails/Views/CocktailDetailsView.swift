@@ -12,6 +12,8 @@ struct CocktailDetailsView: View {
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject var favoritesViewModel: FavoritesViewModel
     
+    @State private var backgroundColor: Color = .clear
+    
     init(cocktail: Cocktail) {
         self.cocktail = cocktail
         
@@ -34,12 +36,62 @@ struct CocktailDetailsView: View {
                     }
                 }
                 
-                HStack {
-                    CocktailIngredientsView(cocktail: cocktail)
-                }
-                .padding()
+                CocktailIngredientsView(cocktail: cocktail)
+                    .padding(.vertical, 5)
+                    .background(.secondary.opacity(0.25))
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
                 
-                Text(cocktail.strInstructions)
+                HStack {
+                    Text(cocktail.strAlcoholic)
+                    Text(cocktail.strCategory)
+                }
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Instructions")
+                            .font(.headline)
+                        Spacer()
+                    }
+                    .padding(.vertical, 5)
+                    Text(cocktail.strInstructions)
+                }
+                
+                HStack {
+                    Text("Glass type:")
+                        .font(.headline)
+                    Text(cocktail.strGlass)
+                    Spacer()
+                }
+                .padding(.vertical, 5)
+                
+                if let iba = cocktail.strIBA {
+                    HStack {
+                        Text("IBA Category:")
+                            .font(.headline)
+                        Text(iba)
+                        Spacer()
+                    }
+                    .padding(.vertical, 5)
+                }
+                
+                if let tags = cocktail.strTags {
+                    HStack(alignment: .top) {
+                        Text("Tags:")
+                            .font(.headline)
+                        Text(tags)
+                        Spacer()
+                    }
+                    .padding(.vertical, 5)
+                }
+                
+                if let alternate = cocktail.strDrinkAlternate {
+                    HStack {
+                        Text("Alternative: ")
+                            .font(.headline)
+                        Text(alternate)
+                    }
+                    .padding(.vertical, 5)
+                }
             }
         }
         .scrollIndicators(.hidden)
