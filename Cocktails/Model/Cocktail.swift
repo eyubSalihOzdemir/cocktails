@@ -58,6 +58,133 @@ struct Cocktail: Codable, Hashable, Equatable {
     var strImageSource: String? = nil
     var strDateModified: String? = nil
     
+    var cocktailIngredients: [CocktailIngredient] {
+        var cocktailIngredients = [CocktailIngredient]()
+        
+        if let ingredient = strIngredient1 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure1 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient2 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure2 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient3 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure3 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient4 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure4 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient5 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure5 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient6 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure6 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient7 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure7 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient8 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure8 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient9 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure9 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient10 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure10 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient11 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure11 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient12 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure12 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient13 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure13 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient14 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure14 ?? "No measure"
+                )
+            )
+        }
+        if let ingredient = strIngredient15 {
+            cocktailIngredients.append(
+                CocktailIngredient(
+                    ingredient: ingredient,
+                    mesaure: strMeasure15 ?? "No measure"
+                )
+            )
+        }
+        
+        return cocktailIngredients
+    }
+    
     static func ==(lhs: Cocktail, rhs: Cocktail) -> Bool {
         return lhs.idDrink == rhs.idDrink
     }

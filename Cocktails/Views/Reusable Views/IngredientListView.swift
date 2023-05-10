@@ -19,6 +19,20 @@ struct IngredientListView: View {
                     IngredientDetailsView(ingredient: ingredient)
                 } label: {
                     HStack {
+                        CacheAsyncImage(url: URL(string: "https://www.thecocktaildb.com/images/ingredients/\(ingredient.strIngredient.lowercased()).png")!) { phase in
+                            if let image = phase.image {
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                            } else if phase.error != nil {
+                                EmptyView()
+                            } else {
+                                ProgressView()
+                            }
+                        }
+                        .frame(width: 50, height: 50)
+                        
                         Text(ingredient.strIngredient)
                         
                         if showFavoriteIndicator && favoritesViewModel.ingredients.contains(ingredient) {

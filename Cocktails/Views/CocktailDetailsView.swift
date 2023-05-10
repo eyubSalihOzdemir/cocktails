@@ -32,6 +32,13 @@ struct CocktailDetailsView: View {
                     ProgressView()
                 }
             }
+            
+            HStack {
+                CocktailIngredientsView(cocktail: cocktail)
+            }
+            .padding()
+            
+            Text(cocktail.strInstructions)
         }
         .padding()
         .navigationTitle(cocktail.strDrink)
@@ -56,5 +63,6 @@ struct CocktailDetailsView_Previews: PreviewProvider {
         NavigationView {
             CocktailDetailsView(cocktail: Cocktail.example)
         }
+        .environmentObject(FavoritesViewModel())
     }
 }
