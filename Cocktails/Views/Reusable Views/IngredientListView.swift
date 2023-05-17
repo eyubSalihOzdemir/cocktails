@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IngredientListView: View {
-    @Binding var ingredientList: [Ingredient]
+    var ingredientList: [Ingredient]
     @EnvironmentObject var favoritesViewModel: FavoritesViewModel
     var showFavoriteIndicator: Bool = true
     
@@ -51,6 +51,6 @@ struct IngredientListView: View {
 
 struct IngredientListView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientListView(ingredientList: .constant([Ingredient.example]))
+        IngredientListView(ingredientList: [Ingredient.example])
     }
 }

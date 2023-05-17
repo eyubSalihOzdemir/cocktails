@@ -14,25 +14,43 @@ struct FavoritesView: View {
         NavigationView {
             List {
                 Section("Cocktails") {
-                    CocktailListView(cocktailList: $viewModel.cocktails, showFavoriteIndicator: false)
+                    CocktailListView(cocktailList: filteredCocktails, showFavoriteIndicator: false)
                 }
                 .textCase(nil)
                 
                 Section("Ingredients") {
-                    IngredientListView(ingredientList: $viewModel.ingredients, showFavoriteIndicator: false)
+                    IngredientListView(ingredientList: filteredIngredients, showFavoriteIndicator: false)
                 }
                 .textCase(nil)
             }
             .navigationTitle("Favorites")
         }
         .searchable(text: $viewModel.searchText, prompt: "Search in favorites")
-        
-        // Implement the search for view feature!
+    }
+    
+    var filteredCocktails: [Cocktail] {
+        if viewModel.searchText.isEmpty {
+            return viewModel.cocktails
+        } else {
+            return viewModel.cocktails.filter { cocktail in
+                cocktail.strDrink.localizedCaseInsensitiveContains(viewModel.searchText)
+            }
+        }
+    }
+    var filteredIngredients: [Ingredient] {
+        if viewModel.searchText.isEmpty {
+            return viewModel.ingredients
+        } else {
+            return viewModel.ingredients.filter { ingredient in
+                ingredient.strIngredient.localizedCaseInsensitiveContains(viewModel.searchText)
+            }
+        }
     }
 }
 
 struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
         FavoritesView()
+            .environmentObject(FavoritesViewModel())
     }
 }

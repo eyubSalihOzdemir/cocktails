@@ -36,12 +36,12 @@ struct CocktailSearchView: View {
                     } else {
                         List {
                             Section("Cocktails") {
-                                CocktailListView(cocktailList: $cocktailList)
+                                CocktailListView(cocktailList: cocktailList)
                             }
                             .textCase(nil)
                             
                             Section("Ingredients") {
-                                IngredientListView(ingredientList: $ingredientList)
+                                IngredientListView(ingredientList: ingredientList)
                             }
                             .textCase(nil)
                         }
